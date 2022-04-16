@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Customer Management System</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+  <!-- Brand -->
+  <a class="navbar-brand" href="#">Customer Management System</a>
+
+  <!-- Toggler/collapsibe Button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Navbar links -->
+ < <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/customers}">Customer Management</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<br>
+<br>
+	<div class = "container">
+		<div class = "row">
+			<div class ="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+				<h1 class = "text-center"> Register </h1>
+				<div class = "card-body">
+				<div th:if="${session.message}" th:classappend="${session.message}" class="alert alert-success"
+                 role="alert">
+                <p th:text="${#session.message}"></p>
+                <th:block text="${#session.removeAttribute('message')}"></th:block>
+                </div>
+					<form th:action="@{/customers}" th:object = "${customer}" method="POST">
+						<div class ="form-group">
+							<label>First Name </label>
+							<input
+							type = "text"
+							name = "firstName"
+							th:field = "*{firstName}"
+							class = "form-control"
+							placeholder="Enter First Name" />
+							<p class="alert alert-danger" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">
+                        </div>
+                   
+						
+						<div class ="form-group">
+							<label>Last Name </label>
+							<input
+							type = "text"
+							name = "lastName"
+							th:field = "*{lastName}"
+							class = "form-control"
+							placeholder="Enter Last Name" 
+							/>
+							<p class="alert alert-danger" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">
+						</div>
+						
+						<div class ="form-group">
+							<label> Email </label>
+							<input
+							type = "text"
+							name = "email"
+							th:field = "*{email}"
+							class = "form-control"
+							placeholder="Enter Email" 
+							/>
+							<p class="alert alert-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">
+						</div>
+						
+						<div class ="form-group">
+							<label>Age</label>
+							<input
+							type = "number"
+							name = "Age"
+							th:field = "*{Age}"
+							class = "form-control"
+							placeholder="Enter Age" 
+							/>
+							<p class="alert alert-danger" th:if="${#fields.hasErrors('Age')}" th:errors="*{Age}">
+						</div>
+						<div class ="form-group">
+							<label> Phone_no </label>
+							<input
+							type = "text"
+							name = "Phone"
+							th:field = "*{Phone}"
+							class = "form-control"
+							placeholder="Enter Phone_no" 
+							/>
+							<p class="alert alert-danger" th:if="${#fields.hasErrors('Phone')}" th:errors="*{Phone}">
+						</div>
+						<div class ="form-group">
+							<label> Income </label>
+							<input
+							type = "number"
+							name = "Imcome"
+							th:field = "*{Income}"
+							class = "form-control"
+							placeholder="Enter Annual Income" 
+							/>
+							<p class="alert alert-danger" th:if="${#fields.hasErrors('Income')}" th:errors="*{Income}">
+						</div>
+						<br>
+                        <div class ="form-group">
+							<label> Gender : </label>
+							&nbsp;&nbsp;
+							<select name="Gender">
+                        <option th:each="Gender : ${genderList}" th:text="${Gender}"/>
+                        </select>
+						</div>
+						<br>
+						<div class ="form-group">
+							<label> Geography :</label> 
+							&nbsp;&nbsp;
+							<select name="Geography">
+                        <option th:each="Geography : ${geographyList}" th:text="${Geography}"/>
+                        </select>
+						</div>
+						<br>
+						<div class ="form-group">
+							<label> Household : </label>
+							&nbsp;&nbsp;
+							<select name="Household">
+                        <option th:each="Household : ${householdList}" th:text="${Household}"/>
+                        </select>
+						</div>
+						
+						
+						
+						
+						<div class = "box-footer">
+							<button type="submit" class = "btn btn-primary">
+								Submit
+							</button>
+						</div>
+					</form>
+				
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
